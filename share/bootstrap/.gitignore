@@ -1,8 +1,12 @@
 PROJECT_NAME
 *.[oa]
 *.out
+*.txt
 *~
+*.bk
 *.log
-sbom.json
+*.db
+*.json
+.env
 vuln.table
 
