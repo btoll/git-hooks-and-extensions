@@ -45,9 +45,16 @@ for file in "$HOME/.local/share/git-hooks-and-extensions/bootstrap/"*
 do
     cp -i "$file" "$PROJECT_DIR"
     # This is matching against the absolute file name.
-    if [ "$(basename "$file")" = README.md ] || [ "$(basename "$file")" = .gitignore ]
+    if [ "$(basename "$file")" = .gitignore ]
     then
         sed -i 's/PROJECT_NAME/'"$(basename "$PROJECT_DIR")"'/' "$PROJECT_DIR/$(basename "$file")"
+    fi
+
+    if [ "$(basename "$file")" = README.md ]
+    then
+        sed -i -e 's/PROJECT_NAME/'"$(basename "$PROJECT_DIR")"'/' \
+	    -e 's/PROJECT_AUTHOR/'"$(git config get user.name)"'/' \
+	    -e 's|PROJECT_SITE|'"$(git config get user.site)"'|' "$PROJECT_DIR/README.md"
     fi
 done
 shopt -u dotglob

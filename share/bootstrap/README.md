@@ -6,5 +6,5 @@
 
 ## Author
 
-[Benjamin Toll](https://benjamintoll.com)
+[PROJECT_AUTHOR](PROJECT_SITE)
 

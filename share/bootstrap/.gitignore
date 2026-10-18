@@ -6,7 +6,7 @@ PROJECT_NAME
 *.bk
 *.log
 *.db
-*.json
+*.json*
 .env
 vuln.table
 
