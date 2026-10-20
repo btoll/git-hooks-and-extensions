@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Will copy every file from $HOME/.local/share/git-hooks-and-extensions/bootstrap/ into either the cwd
+# or, if given, the location pointed to be `--dir`.
+# Files copied will be `LICENSE`, `README.md`, et al.
+#
+# Also, will update the project name in README.md to $(basename $PROJECT_DIR)."
+
+set -eo pipefail
+
+PROJECT_DIR=
+
+usage() {
+    printf "git-bootstrap
+
+Usage: %s [args]
+
+Args:
+--dir, -d   The git directory into which the Makefile will be copied.
+--lang, -l  The language determines which Makefile to copy into the project.
+--help, -h  Help.
+
+Truthfully, this doesn't use any \`git\` commands.  Oh well.\n" "$0"
+}
+
+if [ "$#" -gt 0 ]; then
+    while [ "$#" -gt 0 ]; do
+        OPT="$1"
+        case "$OPT" in
+            --dir|-d) shift; PROJECT_DIR="$1" ;;
+	    --lang|-l) shift; LANGUAGE="$1" ;;
+            --help|-h) usage; exit 0 ;;
+            *) printf "%b Unknown option.\n" "$ERROR"; usage; exit 1 ;;
+        esac
+        shift
+    done
+fi
+
+if [ -z "$PROJECT_DIR" ]
+then
+    PROJECT_DIR=$(pwd)
+fi
+
+if [ -z "$LANGUAGE" ]
+then
+    LANGUAGE=go
+fi
+
+# Toggle to include hidden files in the filename expansion when globbing.
+if cp "$HOME/.local/share/git-hooks-and-extensions/makefile/Makefile-${LANGUAGE}" "$PROJECT_DIR/Makefile"
+then
+    printf "%b Installed Makefile into %s.\n" "$SUCCESS" "$PROJECT_DIR"
+fi
+

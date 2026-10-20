@@ -3,6 +3,7 @@
 - [About](#about)
     + [`git-init-wrapper`](#git-init-wrapper)
     + [`git-bootstrap`](#git-bootstrap)
+    + [`git-makefile`](#git-makefile)
     + [`git-hooks`](#git-hooks)
     + [`git-hub`](#git-hub)
     + [`git-ls`](#git-ls)
@@ -26,7 +27,7 @@ This extension provides a number of custom Git extensions:
 
 ## `git-init-wrapper`
 
-A wrapper around `git init` that also optionally installs git pre-commit hooks and bootstrap files.
+A wrapper around `git init` that also optionally installs Git pre-commit hooks and bootstrap files.
 
 - Initialize the new repository (`git-init`).
 - Install pre-defined bootstrap files that should be copied into each new repository.
@@ -39,13 +40,26 @@ A wrapper around `git init` that also optionally installs git pre-commit hooks a
 
 ## `git-bootstrap`
 
-Copy every file in $HOME/.local/share/git-hooks-and-extensions/bootstrap into the git project directory.  Currently, it will install the following files:
+Copy every file in $HOME/.local/share/git-hooks-and-extensions/bootstrap into the Git project directory.  Currently, it will install the following files:
 
 - `README.md`
 - `LICENSE`
 - `.gitignore`
 
 Note that several of the files contain the placeholder `PROJECT_NAME`, which will be replaced by the project name.
+
+## `git-makefile`
+
+Copy the appropriate Makefile in $HOME/.local/share/git-hooks-and-extensions/makefile into the Git project directory.  Currently, there are two Makefiles:
+
+- `Makefile-c`
+- `Makefile-go`
+
+> It will default to `Makefile-go`.
+
+Note that several of the files contain the placeholder `PROJECT_NAME`, which will be replaced by the project name.
+
+To support more language-based Makefiles, simply create a new file in the directory with the name `Makefile-LANGUAGE`.  Note that the language must be lowercase.
 
 ## `git-hooks`
 

@@ -31,6 +31,8 @@ mkdir -p "$SHARE_DIR"
 echo -e "$INFO Installing git bootstrap files into $SHARE_DIR/bootstrap..."
 cp -r "$GH_DIR/share/bootstrap" "$SHARE_DIR"
 cp "$GH_DIR/share/colors.sh" "$SHARE_DIR"
+echo -e "$INFO Installing git makefile files into $SHARE_DIR/makefile..."
+cp -r "$GH_DIR/share/makefile" "$SHARE_DIR"
 
 echo -e "$WARN Add $BINDIR/bin to PATH."
 

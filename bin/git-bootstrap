@@ -17,7 +17,7 @@ Usage: %s [args]
 
 Args:
 --dir, -d   The git directory into which the files will be copied.
---help      Help.
+--help, -h  Help.
 
 Truthfully, this doesn't use any \`git\` commands.  Oh well.\n" "$0"
 }
@@ -27,7 +27,7 @@ if [ "$#" -gt 0 ]; then
         OPT="$1"
         case "$OPT" in
             --dir|-d) shift; PROJECT_DIR="$1" ;;
-            --help) usage; exit 0 ;;
+            --help|-h) usage; exit 0 ;;
             *) printf "%b Unknown option.\n" "$ERROR"; usage; exit 1 ;;
         esac
         shift
